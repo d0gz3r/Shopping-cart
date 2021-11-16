@@ -9,7 +9,7 @@ import styles from './App.module.css';
 
 const App = () => {
   return (   
-    <BrowserRouter>
+    <BrowserRouter basename="/Shopping-cart/">
       <div className={styles.main__container}>
         <Header />
 
