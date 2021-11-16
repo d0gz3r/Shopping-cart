@@ -5,11 +5,13 @@ import routesConfig from '../../routes/routesConfig';
 import Header from '../../components/Header/Header';
 import HomePage from '../HomePage/HomePage';
 
+import { REPO_NAME } from '../../constants/repo';
+
 import styles from './App.module.css';
 
 const App = () => {
   return (   
-    <BrowserRouter basename="/Shopping-cart/">
+    <BrowserRouter basename={`/${REPO_NAME}/`}>
       <div className={styles.main__container}>
         <Header />
 
