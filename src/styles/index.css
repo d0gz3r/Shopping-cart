@@ -5,41 +5,11 @@ body {
   background-position: top left;
   background-attachment: fixed;
 }
-.goods__wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 250px;
-  width: 200px;
-  text-align: center;
-  border: 2px solid #fff;
-  margin-top: 50px;
-  border-radius: 10px;
-  color: #fff;
+@media (max-width: 767px){
+  .HomePage_container__bDOKH{
+    display: flex;
+    justify-content: center;
+  }
 }
-.name{
-  font-size: 25px;
-  font-weight: bold;
-}
-.category{
-  font-size: 20px;
-}
-.price{
-  text-decoration: underline;
-}
-.goods__button{
-  width: 170px;
-  border: none;
-  border-radius: 10px;
-  margin: 0 auto;
-  height: 30px;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #fff;
-  transition: .4s;
-}
-.goods__button:hover{
-  cursor: pointer;
-  background: rgb(255, 255, 255, .6);
-}
+
 

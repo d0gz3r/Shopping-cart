@@ -1,4 +1,6 @@
-.main__container{
-  width: 1000px;
-  margin: 0 auto;
+@media (max-width: 768px){
+  .container{
+    display: flex;
+    justify-content: center;
+  }
 }

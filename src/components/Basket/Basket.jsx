@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { removeGoodFromBasket } from '../../store/actions';
+import { Card, Button } from 'react-bootstrap';
 
 import styles from './Basket.module.css';
 
@@ -29,13 +30,18 @@ const Basket = ({
       {!showGoods 
         ? null
         : 
-        <div className="goods__wrapper">
-          <p className="name">{name}</p>
-          <p className="category">Category: {category}</p>
-          <p className="price">Price: {price}</p>
-    
-          <button className="goods__button" onClick={remove}>Удалить из корзины</button>
-        </div>
+        <Card style={{ width: '18rem', marginTop: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center'}}>
+          <Card.Body>
+            <Card.Title>{name}</Card.Title>
+            <Card.Text>
+              Category: {category}
+            </Card.Text>
+            <Card.Text style={{fontWeight: 'bold'}}>
+              Price: {price}
+            </Card.Text>
+            <Button variant="primary" onClick={remove}>Удалить из корзины</Button>
+          </Card.Body>
+        </Card>
       }
     </>
   )

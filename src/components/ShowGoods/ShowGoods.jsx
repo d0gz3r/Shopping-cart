@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addGoodToBasket, removeGoodFromBasket } from '../../store/actions';
 import { useEffect, useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
 
 import styles from './ShowGoods.module.css';
 
@@ -42,13 +43,27 @@ const ShowGoods = ({
   }, [storeData])
 
   return (
-    <div className="goods__wrapper">
-      <p className="name">{name}</p>
-      <p className="category">Category: {category}</p>
-      <p className="price">Price: {price}</p>
+    // <div className="goods__wrapper">
+    //   <p className="name">{name}</p>
+    //   <p className="category">Category: {category}</p>
+    //   <p className="price">Price: {price}</p>
 
-      <button className="goods__button" onClick={dispatchGoodsInBasket}>{goodsInBasket ? 'Удалить из корзины' : 'Добавить в корзину'}</button>
-    </div>
+    //   <button className="goods__button" onClick={dispatchGoodsInBasket}>{goodsInBasket ? 'Удалить из корзины' : 'Добавить в корзину'}</button>
+    // </div>
+
+
+    <Card style={{ width: '18rem', marginTop: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center'}}>
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>
+          Category: {category}
+        </Card.Text>
+        <Card.Text style={{fontWeight: 'bold'}}>
+          Price: {price}
+        </Card.Text>
+        <Button variant="primary" onClick={dispatchGoodsInBasket}>{goodsInBasket ? 'Удалить из корзины' : 'Добавить в корзину'}</Button>
+      </Card.Body>
+    </Card>
   )
 }
 

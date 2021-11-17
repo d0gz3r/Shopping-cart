@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import Basket from '../../components/Basket/Basket';
 
+import { Badge } from 'react-bootstrap';
+
 import styles from './BasketPage.module.css';
 
 const BasketPage = () => {
@@ -31,7 +33,7 @@ const BasketPage = () => {
 
   return (
     <>
-      <div className={styles.fullPrice}>Общая цена: {fullPrice} руб.</div>
+      <h2 style={{color: '#fff', marginTop:'2rem'}}>Общая цена:<Badge bg="secondary" style={{marginLeft: '1rem'}}>{fullPrice} руб.</Badge></h2>
 
       <div className={styles.container}>
         {goods.map(({id, name, category, price}, index) => {
