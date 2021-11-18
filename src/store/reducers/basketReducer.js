@@ -1,7 +1,8 @@
 import { omit } from 'lodash';
 import { ADD_GOOD_TO_BASKET, REMOVE_GOOD_FROM_BASKET } from '../constants/actionTypes';
+import { getLocalStorage } from '../../utils/localStorage'; 
 
-const initialState = {};
+const initialState = getLocalStorage('store');
 
 const basketReducer = (state = initialState, action) => {
   switch (action.type) {
