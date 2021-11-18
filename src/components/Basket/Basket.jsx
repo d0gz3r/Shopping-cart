@@ -76,8 +76,8 @@ const Basket = ({
               Добавлено товаров: {numOfGoods}
             </Card.Text>
             <div>
-              <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', marginRight: '1rem', textAlign: 'center'}}>+</Button>
-              <Button variant="primary" onClick={removeGood} style={{width: '3rem'}}>-</Button>
+              <Button variant="primary" onClick={removeGood} style={{width: '3rem', marginRight: '1rem'}}>-</Button>
+              <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem'}}>+</Button>
             </div>
             <Button variant="primary" onClick={remove} style={{marginTop: '1rem'}}>Удалить из корзины</Button>
           </Card.Body>

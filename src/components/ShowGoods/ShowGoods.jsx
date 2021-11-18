@@ -76,8 +76,8 @@ const ShowGoods = ({
           ? <Button variant="primary" onClick={dispatchGoodsInBasket}>Добавить в корзину</Button> 
           : 
           <div>
-            <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', marginRight: '1rem', textAlign: 'center'}}>+</Button>
-            <Button variant="primary" onClick={removeGood} style={{width: '3rem'}}>-</Button>
+            <Button variant="primary" onClick={removeGood} style={{width: '3rem', marginRight: '1rem'}}>-</Button>
+            <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem'}}>+</Button>    
           </div>        
         }
       </Card.Body>
