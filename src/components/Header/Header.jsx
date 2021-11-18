@@ -16,9 +16,16 @@ const Header = () => {
   const storeData = useSelector(store => store.basketReducer);
 
   useEffect(() => {
-    const arr = Object.entries(storeData);
-    
-    setCounter(arr.length);
+    const arr = Object.values(storeData);
+    let sumOfGoods = 0;
+
+    if(arr.length){
+      arr.forEach((elem) => {
+        sumOfGoods += elem.numberOfGoods;
+      })
+    }
+   
+    setCounter(sumOfGoods);
   }, [storeData]);
 
 

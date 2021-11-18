@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { removeGoodFromBasket } from '../../store/actions';
+import { removeGoodFromBasket, addGoodToBasket } from '../../store/actions';
 import { Card, Button } from 'react-bootstrap';
 
 import styles from './Basket.module.css';
@@ -13,16 +13,49 @@ const Basket = ({
   category,
   price,
   fullPrice,
-  setFullPrice
+  setFullPrice,
+  numberOfGoods
 }) => {
   const [showGoods, setShowGoods] = useState(true);
+  const [numOfGoods, setNumOfGoods] = useState(numberOfGoods);
 
   const dispatch = useDispatch();
 
   const remove = () => {
     dispatch(removeGoodFromBasket(id));
     setShowGoods(false);
-    setFullPrice(fullPrice-price);
+    setFullPrice(fullPrice-(price*numOfGoods));
+  }
+
+  const dispatchGoodsInBasket = () => {
+    dispatch(addGoodToBasket({
+      [id]:{
+        name,
+        category,
+        price,
+        numberOfGoods: numOfGoods+1
+      }
+    }));  
+    setFullPrice(fullPrice+price)
+    setNumOfGoods(numOfGoods+1);
+  }
+
+  const removeGood = () => {
+    if(numOfGoods === 1){
+      setNumOfGoods(0); 
+      remove();
+    }else{
+      dispatch(addGoodToBasket({
+        [id]:{
+          name,
+          category,
+          price,
+          numberOfGoods: numOfGoods-1
+        }
+      }));   
+      setFullPrice(fullPrice-price)
+      setNumOfGoods(numOfGoods-1);
+    }  
   }
 
   return (
@@ -39,7 +72,14 @@ const Basket = ({
             <Card.Text style={{fontWeight: 'bold'}}>
               Price: {price}
             </Card.Text>
-            <Button variant="primary" onClick={remove}>Удалить из корзины</Button>
+            <Card.Text>
+              Добавлено товаров: {numOfGoods}
+            </Card.Text>
+            <div>
+              <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', marginRight: '1rem', textAlign: 'center'}}>+</Button>
+              <Button variant="primary" onClick={removeGood} style={{width: '3rem'}}>-</Button>
+            </div>
+            <Button variant="primary" onClick={remove} style={{marginTop: '1rem'}}>Удалить из корзины</Button>
           </Card.Body>
         </Card>
       }
@@ -51,7 +91,8 @@ Basket.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   category: PropTypes.number,
-  price: PropTypes.number
+  price: PropTypes.number,
+  numberOfGoods: PropTypes.number
 }
 
 export default Basket;

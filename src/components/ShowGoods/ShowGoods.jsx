@@ -13,45 +13,53 @@ const ShowGoods = ({
   category,
   price
 }) => {
+  // STORE
   const dispatch = useDispatch();
   const storeData = useSelector(store => store.basketReducer);
 
-  const [goodsInBasket, setGoodsInBasket] = useState(false);
+  //  STATE
+  const [numberOfGoods, setNumberOfGoods] = useState(0);
+
 
   const dispatchGoodsInBasket = () => {
-    if(!goodsInBasket){
+
+    dispatch(addGoodToBasket({
+      [id]:{
+        name,
+        category,
+        price,
+        numberOfGoods: numberOfGoods+1
+      }
+    }));  
+
+    setNumberOfGoods(numberOfGoods+1);
+  }  
+
+  const removeGood = () => {
+    if(numberOfGoods === 1){
+      setNumberOfGoods(0); 
+      dispatch(removeGoodFromBasket(id)); 
+    }else{
       dispatch(addGoodToBasket({
         [id]:{
           name,
           category,
-          price
+          price,
+          numberOfGoods: numberOfGoods-1
         }
-      }));
-      setGoodsInBasket(true);  
-    }else{
-      dispatch(removeGoodFromBasket(id));
-      setGoodsInBasket(false);
+      }));   
+      setNumberOfGoods(numberOfGoods-1);
     }
-  }  
+  }
 
   useEffect(() => {
-    if(id in storeData){
-      setGoodsInBasket(true);
-    }else{
-      setGoodsInBasket(false); 
+    const arr = storeData[id];
+    if(arr){
+      setNumberOfGoods(arr.numberOfGoods);
     }
   }, [storeData])
 
   return (
-    // <div className="goods__wrapper">
-    //   <p className="name">{name}</p>
-    //   <p className="category">Category: {category}</p>
-    //   <p className="price">Price: {price}</p>
-
-    //   <button className="goods__button" onClick={dispatchGoodsInBasket}>{goodsInBasket ? 'Удалить из корзины' : 'Добавить в корзину'}</button>
-    // </div>
-
-
     <Card style={{ width: '18rem', marginTop: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center'}}>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
@@ -61,7 +69,17 @@ const ShowGoods = ({
         <Card.Text style={{fontWeight: 'bold'}}>
           Price: {price}
         </Card.Text>
-        <Button variant="primary" onClick={dispatchGoodsInBasket}>{goodsInBasket ? 'Удалить из корзины' : 'Добавить в корзину'}</Button>
+        <Card.Text>
+          Добавлено товаров: {numberOfGoods}
+        </Card.Text>
+        {numberOfGoods === 0 
+          ? <Button variant="primary" onClick={dispatchGoodsInBasket}>Добавить в корзину</Button> 
+          : 
+          <div>
+            <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', marginRight: '1rem', textAlign: 'center'}}>+</Button>
+            <Button variant="primary" onClick={removeGood} style={{width: '3rem'}}>-</Button>
+          </div>        
+        }
       </Card.Body>
     </Card>
   )

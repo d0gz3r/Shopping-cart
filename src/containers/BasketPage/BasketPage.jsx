@@ -19,7 +19,7 @@ const BasketPage = () => {
     
     if(arr.length){
       const res = arr.map((elem) => {
-        allPrice += elem[1].price;
+        allPrice += elem[1].price*elem[1].numberOfGoods;
 
         return {
           id: elem[0],
@@ -36,7 +36,7 @@ const BasketPage = () => {
       <h2 style={{color: '#fff', marginTop:'2rem'}}>Общая цена:<Badge bg="secondary" style={{marginLeft: '1rem'}}>{fullPrice} руб.</Badge></h2>
 
       <div className={styles.container}>
-        {goods.map(({id, name, category, price}, index) => {
+        {goods.map(({id, name, category, numberOfGoods, price}, index) => {
           return (
             <Basket 
               key={index}
@@ -44,6 +44,7 @@ const BasketPage = () => {
               name={name}
               category={category}
               price={price} 
+              numberOfGoods={numberOfGoods}
               fullPrice={fullPrice}
               setFullPrice={setFullPrice} 
             /> 
