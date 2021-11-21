@@ -21,7 +21,7 @@ const MapPage = () => {
         <Map
           defaultState={{
             center: [lng, lat],
-            zoom: 8,
+            zoom: 14,
             controls: ['zoomControl', 'fullscreenControl'],
           }}
           width={'100%'}

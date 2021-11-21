@@ -57,6 +57,7 @@ const Basket = ({
       setNumOfGoods(numOfGoods-1);
     }  
   }
+  if(!id || !name || !category || !price || !numberOfGoods) return null;
 
   return (
     <>
@@ -75,11 +76,14 @@ const Basket = ({
             <Card.Text>
               Добавлено товаров: {numOfGoods}
             </Card.Text>
-            <div>
-              <Button variant="primary" onClick={removeGood} style={{width: '3rem', marginRight: '1rem'}}>-</Button>
-              <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem'}}>+</Button>
+            <div style={{display: 'flex', justifyContent:'center',alignItems: 'center'}}>
+              <Button variant="primary" onClick={removeGood} style={{width: '3rem', borderRadius: '0.25rem 0 0 0.25rem'}}>-</Button>
+              <Card.Text style={{display: 'inline-block', padding: '6px', margin: '0', width: '48px', height: '38px', borderBottom: '2px solid #0D6EFD', borderTop: '3px solid #0D6EFD'}}>
+              {numOfGoods}
+              </Card.Text>
+              <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', borderRadius: '0 0.25rem 0.25rem 0'}}>+</Button>
             </div>
-            <Button variant="primary" onClick={remove} style={{marginTop: '1rem'}}>Удалить из корзины</Button>
+            <Button variant="danger" onClick={remove} style={{marginTop: '1rem'}}>Удалить из корзины</Button>
           </Card.Body>
         </Card>
       }
