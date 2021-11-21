@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch, HashRouter } from 'react-router-dom';
 
 import routesConfig from '../../routes/routesConfig';
 import Header from '../../components/Header/Header';
@@ -13,7 +13,7 @@ import styles from './App.module.css';
 
 const App = () => {
   return (   
-    <BrowserRouter basename={`/${REPO_NAME}/`}>
+    <HashRouter basename={`/${REPO_NAME}/`}>
       <div>
         <Header />
 
@@ -32,7 +32,7 @@ const App = () => {
         </Switch>
       </Container>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
