@@ -73,9 +73,6 @@ const Basket = ({
             <Card.Text style={{fontWeight: 'bold'}}>
               Price: {price}
             </Card.Text>
-            <Card.Text>
-              Добавлено товаров: {numOfGoods}
-            </Card.Text>
             <div style={{display: 'flex', justifyContent:'center',alignItems: 'center'}}>
               <Button variant="primary" onClick={removeGood} style={{width: '3rem', borderRadius: '0.25rem 0 0 0.25rem'}}>-</Button>
               <Card.Text style={{display: 'inline-block', padding: '6px', margin: '0', width: '48px', height: '38px', borderBottom: '2px solid #0D6EFD', borderTop: '3px solid #0D6EFD'}}>
