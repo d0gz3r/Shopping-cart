@@ -36,7 +36,7 @@ const Basket = ({
         numberOfGoods: numOfGoods+1
       }
     }));  
-    setFullPrice(fullPrice+price)
+    setFullPrice(fullPrice+price);
     setNumOfGoods(numOfGoods+1);
   }
 
@@ -64,7 +64,7 @@ const Basket = ({
       {!showGoods 
         ? null
         : 
-        <Card style={{ width: '18rem', marginTop: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center'}}>
+        <Card data-testid="basket" style={{ width: '18rem', marginTop: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center'}}>
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>
@@ -74,13 +74,13 @@ const Basket = ({
               Price: {price}
             </Card.Text>
             <div style={{display: 'flex', justifyContent:'center',alignItems: 'center'}}>
-              <Button variant="primary" onClick={removeGood} style={{width: '3rem', borderRadius: '0.25rem 0 0 0.25rem'}}>-</Button>
-              <Card.Text style={{display: 'inline-block', padding: '6px', margin: '0', width: '48px', height: '38px', borderBottom: '2px solid #0D6EFD', borderTop: '3px solid #0D6EFD'}}>
+              <Button data-testid="removeBtn" variant="primary" onClick={removeGood} style={{width: '3rem', borderRadius: '0.25rem 0 0 0.25rem'}}>-</Button>
+              <Card.Text data-testid="numOfGoods" style={{display: 'inline-block', padding: '6px', margin: '0', width: '48px', height: '38px', borderBottom: '2px solid #0D6EFD', borderTop: '3px solid #0D6EFD'}}>
               {numOfGoods}
               </Card.Text>
-              <Button variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', borderRadius: '0 0.25rem 0.25rem 0'}}>+</Button>
+              <Button data-testid="addBtn" variant="primary" onClick={dispatchGoodsInBasket} style={{width: '3rem', borderRadius: '0 0.25rem 0.25rem 0'}}>+</Button>
             </div>
-            <Button variant="danger" onClick={remove} style={{marginTop: '1rem'}}>Удалить из корзины</Button>
+            <Button data-testid="deleteBtn" variant="danger" onClick={remove} style={{marginTop: '1rem'}}>Удалить из корзины</Button>
           </Card.Body>
         </Card>
       }
