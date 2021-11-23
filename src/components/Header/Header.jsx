@@ -36,11 +36,11 @@ const Header = () => {
         <Navbar.Brand>STORE</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link><Link className={styles.link} to="/" exact>Главная</Link></Nav.Link>
+          <Nav data-testid="navbar" className="me-auto">
+            <Nav.Link><Link data-testid="home-link" className={styles.link} to="/" exact>Главная</Link></Nav.Link>
             <Nav.Link><Link className={styles.link} to="/first" exact>Категория 1</Link></Nav.Link>
             <Nav.Link><Link className={styles.link} to="/second" exact>Категория 2</Link></Nav.Link>
-            <Nav.Link><Link className={styles.link} to="/map" exact>Контакты</Link></Nav.Link>
+            <Nav.Link><Link data-testid="contact-link" className={styles.link} to="/map" exact>Контакты</Link></Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link><Link className={styles.link__basket} to="/basket" exact><img className={styles.basket} src={basket} alt="" /><span className={styles.counter}>{counter}</span></Link></Nav.Link>
