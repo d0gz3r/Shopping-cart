@@ -56,15 +56,17 @@ describe('Testing showGoods component', () => {
 
     expect(numOfGoods.textContent).toBe('1');
 
+    
     userEvent.click(addBtn);  
     expect(numOfGoods.textContent).toBe('2');
 
+   
     userEvent.click(removeBtn);  
     expect(numOfGoods.textContent).toBe('1');
     expect(screen.addInBasket).toBeUndefined();
 
+   
     userEvent.click(removeBtn);
-
     expect(screen.getByTestId('addInBasket')).toBeInTheDocument();
     expect(screen.queryByTestId('chooseItemsBlock')).toBeNull();
   });

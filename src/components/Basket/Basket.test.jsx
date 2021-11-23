@@ -22,7 +22,7 @@ describe('Basket testing', () => {
     expect(screen.queryByTestId('basket')).toBeInTheDocument();
   });  
 
-  it('click on add button', () => {
+  it('click on add button and remove button', () => {
     const setFullPrice = jest.fn();
     const { getByTestId } = render(<Provider store={store}><Basket
       id={'1'}
@@ -35,56 +35,19 @@ describe('Basket testing', () => {
     /></Provider>);
     
     const addBtn = getByTestId('addBtn');
+    const removeBtn = getByTestId('removeBtn');
     const numOfGoods = getByTestId('numOfGoods');
 
     expect(numOfGoods.textContent).toBe('1');
 
     userEvent.click(addBtn);  
-
-    expect(numOfGoods.textContent).toBe('2');
-  });
-
-  it('click on remove button', () => {
-    const setFullPrice = jest.fn();
-    const { getByTestId } = render(<Provider store={store}><Basket
-      id={'1'}
-      name={'Product 1'}
-      category={1}
-      price={100}
-      numberOfGoods={2}
-      fullPrice = {100}
-      setFullPrice = {setFullPrice}
-    /></Provider>);
-    
-    const removeBtn = getByTestId('removeBtn');
-    const numOfGoods = getByTestId('numOfGoods');
-
     expect(numOfGoods.textContent).toBe('2');
 
-    userEvent.click(removeBtn);  
-
+    userEvent.click(removeBtn);
     expect(numOfGoods.textContent).toBe('1');
-  });
+    expect(screen.getByTestId('basket')).toBeInTheDocument();
 
-  it('click on remove button when last item', () => {
-    const setFullPrice = jest.fn();
-    const { getByTestId } = render(<Provider store={store}><Basket
-      id={'1'}
-      name={'Product 1'}
-      category={1}
-      price={100}
-      numberOfGoods={1}
-      fullPrice = {100}
-      setFullPrice = {setFullPrice}
-    /></Provider>);
-    
-    const removeBtn = getByTestId('removeBtn');
-    const numOfGoods = getByTestId('numOfGoods');
-
-    expect(numOfGoods.textContent).toBe('1');
-
-    userEvent.click(removeBtn);  
-
+    userEvent.click(removeBtn);
     expect(screen.queryByTestId('basket')).toBeNull();
   });
 
@@ -105,7 +68,6 @@ describe('Basket testing', () => {
     expect(screen.getByTestId('basket')).toBeInTheDocument();
 
     userEvent.click(deleteBtn);
-
     expect(screen.queryByTestId('basket')).toBeNull();
   })
 })
