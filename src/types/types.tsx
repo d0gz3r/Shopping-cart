@@ -3,6 +3,7 @@ export interface IGoods {
   name: string;
   category: number;
   price: number; 
+
 }
 
 export interface IInitialState {

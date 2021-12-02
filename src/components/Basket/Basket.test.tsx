@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Basket from "./Basket";
+import Basket from './Basket';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
 
@@ -13,7 +13,7 @@ describe('Basket testing', () => {
 
   it('Basket renderes correctly with props', () => {
     render(<Provider store={store}><Basket
-      id={'1'}
+      id={1}
       name={'Product 1'}
       category={1}
       price={100}
@@ -25,7 +25,7 @@ describe('Basket testing', () => {
   it('click on add button and remove button', () => {
     const setFullPrice = jest.fn();
     const { getByTestId } = render(<Provider store={store}><Basket
-      id={'1'}
+      id={1}
       name={'Product 1'}
       category={1}
       price={100}
@@ -54,7 +54,7 @@ describe('Basket testing', () => {
   it('delete button work correct', () => {
     const setFullPrice = jest.fn();
     const { getByTestId } = render(<Provider store={store}><Basket
-      id={'1'}
+      id={1}
       name={'Product 1'}
       category={1}
       price={100}

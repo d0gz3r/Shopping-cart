@@ -47,7 +47,7 @@ describe('Testing showGoods component', () => {
     
     userEvent.click(addInBasket);
 
-    expect(screen.addInBasket).toBeUndefined();
+    expect(screen.queryByTestId('addInBasket')).toBeNull();
     expect(screen.getByTestId('chooseItemsBlock')).toBeInTheDocument();
 
     const addBtn = getByTestId('addBtn');
@@ -63,7 +63,7 @@ describe('Testing showGoods component', () => {
    
     userEvent.click(removeBtn);  
     expect(numOfGoods.textContent).toBe('1');
-    expect(screen.addInBasket).toBeUndefined();
+    expect(screen.queryByTestId('addInBasket')).toBeNull();
 
    
     userEvent.click(removeBtn);
