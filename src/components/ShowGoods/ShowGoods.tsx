@@ -18,13 +18,11 @@ const ShowGoods: React.FC<IGoods> = ({
   const storeData = useTypedSelector(state => state.basket);
 
   //  STATE
-  const [numberOfGoods, setNumberOfGoods] = useState(0);
-  const [goRedirect, setGoRedirect] = useState(false);                         
+  const [numberOfGoods, setNumberOfGoods] = useState<number>(0);
+  const [goRedirect, setGoRedirect] = useState<boolean>(false);                         
 
 
   const dispatchGoodsInBasket = () => {
-    
-
     dispatch(addGoodToBasket({
       [id]:{
         name,
