@@ -1,4 +1,6 @@
-import { useSelector } from 'react-redux';
+import React from 'react';
+
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import { Link } from 'react-router-dom';
 
@@ -10,14 +12,14 @@ import basket from './img/shopping-cart.svg';
 import styles from './Header.module.css';
 import { useState, useEffect } from 'react';
 
-const Header = () => {
-  const [counter, setCounter] = useState(0);
+const Header: React.FC = () => {
+  const [counter, setCounter] = useState<number>(0);
 
-  const storeData = useSelector(store => store.basketReducer);
+  const storeData = useTypedSelector(store => store.basket);
 
   useEffect(() => {
     const arr = Object.values(storeData);
-    let sumOfGoods = 0;
+    let sumOfGoods: number = 0;
 
     if(arr.length){
       arr.forEach((elem) => {
@@ -37,13 +39,13 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav data-testid="navbar" className="me-auto">
-            <Nav.Link><Link data-testid="home-link" className={styles.link} to="/" exact>Главная</Link></Nav.Link>
-            <Nav.Link><Link className={styles.link} to="/first" exact>Категория 1</Link></Nav.Link>
-            <Nav.Link><Link className={styles.link} to="/second" exact>Категория 2</Link></Nav.Link>
-            <Nav.Link><Link data-testid="contact-link" className={styles.link} to="/map" exact>Контакты</Link></Nav.Link>
+            <Nav.Link><Link data-testid="home-link" className={styles.link} to="/">Главная</Link></Nav.Link>
+            <Nav.Link><Link className={styles.link} to="/first">Категория 1</Link></Nav.Link>
+            <Nav.Link><Link className={styles.link} to="/second">Категория 2</Link></Nav.Link>
+            <Nav.Link><Link data-testid="contact-link" className={styles.link} to="/map">Контакты</Link></Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link><Link className={styles.link__basket} to="/basket" exact><img className={styles.basket} src={basket} alt="" /><span className={styles.counter}>{counter}</span></Link></Nav.Link>
+            <Nav.Link><Link className={styles.link__basket} to="/basket"><img className={styles.basket} src={basket} alt="" /><span className={styles.counter}>{counter}</span></Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
         </Container>

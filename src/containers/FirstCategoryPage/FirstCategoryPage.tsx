@@ -1,14 +1,19 @@
 import ShowGoods from '../../components/ShowGoods/ShowGoods';
-
+import { IGoods } from '../../types/types';
 import dataBase from '../../dataBase/goods.json'
 
-import styles from './HomePage.module.css';
+import styles from './FirstCategoryPage.module.css';
 
-const HomePage = () => {
+const FirstCategoryPage = () => {
+
+
+  const firstCategory: IGoods[] = dataBase.filter((elem) => {
+    return elem.category === 1;
+  });
   
   return (
     <div className={styles.container}>
-      {dataBase.map(({id, name, category, price}, index) => {
+      {firstCategory.map(({id, name, category, price}, index) => {
         return (
           <ShowGoods 
             key={index}
@@ -23,4 +28,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage;
+export default FirstCategoryPage;

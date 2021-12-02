@@ -1,11 +1,11 @@
 import { createStore } from "redux";
-import roorReducer from './reducers';
+import { rootReducer } from "./reducers";
 import { setLocalStorage } from "../utils/localStorage";
 
-const store = createStore(roorReducer);
+const store = createStore(rootReducer);
 
 store.subscribe(() => {
-  setLocalStorage('store', store.getState().basketReducer);
+  setLocalStorage('store', store.getState().basket);
 });
 
 export default store;

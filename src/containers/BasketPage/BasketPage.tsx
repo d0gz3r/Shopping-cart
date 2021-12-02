@@ -1,26 +1,26 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import Basket from '../../components/Basket/Basket';
-
 import { Badge } from 'react-bootstrap';
 
+import { IBasketPage } from '../../types/types';
 import styles from './BasketPage.module.css';
 
-const BasketPage = () => {
-  const [goods, setGoods] = useState([]);
-  const [fullPrice, setFullPrice] = useState(0);
 
-  const storeData = useSelector(store => store.basketReducer);
+const BasketPage: React.FC = () => {
+  const [goods, setGoods] = useState<IBasketPage[]>([]);
+  const [fullPrice, setFullPrice] = useState<number>(0);
+
+  const storeData = useTypedSelector(state => state.basket);
 
   useEffect(() => {
     const arr = Object.entries(storeData);
-    let allPrice = 0;
+    let allPrice: number = 0;
     
     if(arr.length){
-      const res = arr.map((elem) => {
+      const res: IBasketPage[] = arr.map((elem) => {
         allPrice += elem[1].price*elem[1].numberOfGoods;
-
         return {
           id: elem[0],
           ...elem[1]
@@ -29,6 +29,7 @@ const BasketPage = () => {
       setFullPrice(allPrice);
       setGoods(res);
     }
+
   }, []);
 
   return (

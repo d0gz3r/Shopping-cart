@@ -1,13 +1,19 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
 import { removeGoodFromBasket, addGoodToBasket } from '../../store/actions';
 import { Card, Button } from 'react-bootstrap';
+import { IGoods } from '../../types/types';
 
 import styles from './Basket.module.css';
 
-const Basket = ({
+interface IBasket extends IGoods {
+  fullPrice: number;
+  setFullPrice(value: number): void;
+  numberOfGoods: number;
+}
+
+const Basket: React.FC<IBasket> = ({
   id,
   name,
   category,
@@ -16,8 +22,8 @@ const Basket = ({
   setFullPrice,
   numberOfGoods
 }) => {
-  const [showGoods, setShowGoods] = useState(true);
-  const [numOfGoods, setNumOfGoods] = useState(numberOfGoods);
+  const [showGoods, setShowGoods] = useState<boolean>(true);
+  const [numOfGoods, setNumOfGoods] = useState<number>(numberOfGoods);
 
   const dispatch = useDispatch();
 
@@ -88,12 +94,5 @@ const Basket = ({
   )
 }
 
-Basket.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  category: PropTypes.number,
-  price: PropTypes.number,
-  numberOfGoods: PropTypes.number
-}
 
 export default Basket;

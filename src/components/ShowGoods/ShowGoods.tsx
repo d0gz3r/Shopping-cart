@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types';
-
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { IGoods } from '../../types/types';
+import { useDispatch } from 'react-redux';
 import { addGoodToBasket, removeGoodFromBasket } from '../../store/actions';
 import { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
-import styles from './ShowGoods.module.css';
-
-const ShowGoods = ({
+const ShowGoods: React.FC<IGoods> = ({
   id,
   name,
   category,
@@ -16,14 +15,15 @@ const ShowGoods = ({
 }) => {
   // STORE
   const dispatch = useDispatch();
-  const storeData = useSelector(store => store.basketReducer);
+  const storeData = useTypedSelector(state => state.basket);
 
   //  STATE
   const [numberOfGoods, setNumberOfGoods] = useState(0);
-  const [goRedirect, setGoRedirect] = useState(false);
+  const [goRedirect, setGoRedirect] = useState(false);                         
 
 
   const dispatchGoodsInBasket = () => {
+    
 
     dispatch(addGoodToBasket({
       [id]:{
@@ -97,13 +97,6 @@ const ShowGoods = ({
       </Card.Body>
     </Card>
   )
-}
-
-ShowGoods.propTypes = {
-  id: PropTypes.number,
-  name: PropTypes.string,
-  category: PropTypes.number,
-  price: PropTypes.number
 }
 
 export default ShowGoods;

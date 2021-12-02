@@ -1,0 +1,2 @@
+export const ADD_GOOD_TO_BASKET: string = 'ADD_GOOD_TO_BASKET';
+export const REMOVE_GOOD_FROM_BASKET: string = 'REMOVE_GOOD_FROM_BASKET';

@@ -1,12 +1,18 @@
 import PropTypes from 'prop-types';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
-
 import shopOnMap from '../../dataBase/shop.json';
-
 import styles from './MapPage.module.css';
 
+interface coordinates {
+  id: string;
+  address: string;
+  lat: number;
+  lng: number;
+}
+
 const MapPage = () => {
-  const {id, address, lat, lng} = shopOnMap;
+
+  const {id, address, lat, lng}: coordinates = shopOnMap;
 
   return (
     <div style={{marginTop: '5%'}}> 
