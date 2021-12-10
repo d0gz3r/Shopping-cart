@@ -20,6 +20,10 @@
   width: 35px;
   height: 35px;
 }
+.link__wrapper{
+  display: flex;
+  align-items: center;
+}
 .counter{
   color: #adb1b8;
   font-size: 25px;
@@ -32,6 +36,9 @@
     width: 25px;
     height: 25px;
   } 
+  .link__wrapper{
+    display: block;
+  }
   .counter{
     font-size: 20px;
   }
